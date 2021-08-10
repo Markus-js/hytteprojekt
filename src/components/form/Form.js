@@ -39,7 +39,7 @@ export default function Form({ formData }) {
         />
       </div>
       <div>
-        <label>Dit telefon nr.:</label>
+        <label>Din mailadresse:</label>
         <input
           name="email"
           type="email"
