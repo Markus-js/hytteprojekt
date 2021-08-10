@@ -1,0 +1,35 @@
+
+
+.container {
+    display: flex;
+    padding: 30px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.flexWrap {
+    width: 300px;
+     display: flex;   
+     justify-content: space-between;
+     background: red;
+}
+.btnContainer {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.imageContainer {
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size:  contain;
+    background-position: center;
+}
+img {
+    width: 100%;
+    object-fit: cover;
+}
+

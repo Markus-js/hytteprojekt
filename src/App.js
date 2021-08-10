@@ -1,23 +1,81 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./global.scss";
+import HytteList from "./components/hytte/HytteList";
+import HytteModal from "./components/hytteModal/HytteModal";
+import ReservationModal from "./components/reservationModal/ReservationModal";
+import ImageSlider from "./components/carousel/ImageSlider";
+// Get data from current
+import { SliderData } from "./components/carousel/SliderData";
+
+import classes from "./App.module.css";
+import { fetch2api } from "./helpers/helper";
 
 function App() {
+  const [hytteListe, setHytteListe] = useState(null);
+  const [handleToggle, setHandleToggle] = useState(true);
+  const [handleForm, setHandleForm] = useState(true);
+  const [hytteId, setHytteId] = useState(null);
+  const [formId, setFormId] = useState(null);
+  const [sliderToggle, setSliderToggle] = useState(false);
+
+  const getHytteListe = async () => {
+    const url = "https://api.mediehuset.net/hytteshop";
+    const result = await fetch2api(url);
+    setHytteListe(result?.items);
+  };
+
+  useEffect(() => {
+    getHytteListe();
+  }, []);
+
+  // handleClick = context
+  function handleClick(id) {
+    setHytteId(id);
+    setHandleToggle(true);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.container}>
+      {/* Validate if HytteList */}
+      {/* // handleClick = context */}
+
+      {hytteListe && (
+        <HytteList
+          handleClick={handleClick}
+          data={hytteListe}
+          hytteListe={hytteListe}
+          setSliderToggle={setSliderToggle}
+        />
+      )}
+
+      {/* Modal */}
+
+      {hytteId && (
+        <HytteModal
+          hytteId={hytteId}
+          handleToggle={handleToggle}
+          setToggle={setHandleToggle}
+          setFormId={setFormId}
+          setForm={setHandleForm}
+          setSliderToggle={setSliderToggle}
+        />
+      )}
+
+      {/* Form */}
+
+      {formId && (
+        <ReservationModal
+          formId={formId}
+          handleForm={handleForm}
+          setForm={setHandleForm}
+          setSliderToggle={setSliderToggle}
+        />
+      )}
+
+      {/* Carousel 
+            Remember Validation
+        */}
+      {sliderToggle && <ImageSlider slides={SliderData} />}
     </div>
   );
 }
