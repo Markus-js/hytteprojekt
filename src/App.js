@@ -8,7 +8,6 @@ import ImageSlider from "./components/carousel/ImageSlider";
 // Get data from current
 import { SliderData } from "./components/carousel/SliderData";
 
-import classes from "./App.module.css";
 import { fetch2api } from "./helpers/helper";
 
 function App() {

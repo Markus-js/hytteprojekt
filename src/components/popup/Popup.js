@@ -1,5 +1,4 @@
 
-import classes from "./Popup.module.css";
 
 export default function Popup({ handlePopup, setPopup }) {
   function handleExit() {
