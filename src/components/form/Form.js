@@ -25,13 +25,14 @@ export default function Form({ formData }) {
   
     return (
       <form className="contact-form" onSubmit={sendEmail}>
-        <input type="hidden" name="contact_number" />
+        <input type="text" name="nr" />
         <label>Name</label>
-        <input type="text" name="user_name" />
+        <input type="text" name="name" />
+        <label>num</label>
+        <input type="number" name="number" />
         <label>Email</label>
-        <input type="email" name="user_email" />
+        <input type="email" name="email" />
         <label>Message</label>
-        <textarea name="message" />
         <input type="submit" value="Send" />
       </form>
     );
