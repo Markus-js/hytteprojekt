@@ -1,60 +1,77 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import emailjs from "emailjs-com";
 
 export default function Form({ formData }) {
-  const { register, handleSubmit, errors } = useForm();
   const priceFixed = parseInt(formData.price).toFixed(0);
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+
+  function sendEmail(e) {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("gmail", "template_83c911k", e.target, "user_iKlFVYLk9kyYQV2fO6bD6")
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+      e.target.reset()
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>Nummeret på huset:</label>
-        <input
-          name="number"
-          type="text"
-          placeholder={`Nr. ${formData.number}`}
-          // Maybe: value=`${formData.number}`
-          {...register("value_name", { required: true })}
-        />
-      </div>
-      <div>
-        <label>Dit navn og efternavn:</label>
-        <input
-          name="fullName"
-          type="text"
-          placeholder="Anders Andersen"
-          {...register("value_name", { required: true })}
-        />
-      </div>
-      <div>
-        <label>Dit telefon nr.:</label>
-        <input
-          name="phone"
-          type="number"
-          placeholder="+45 12 34 56 78"
-          {...register("value_name", { required: true })}
-        />
-      </div>
-      <div>
-        <label>Din mailadresse:</label>
-        <input
-          name="email"
-          type="email"
-          placeholder="example@email.com"
-          {...register("value_name", { required: true })}
-        />
-      </div>
-      <div>
-          <p>Pris:</p>
-      </div>
-      <div>
-        {/* Fix coma toFixed() */}
-          <p>{priceFixed}</p>
-      </div>
-      <input type="submit" className="btn"/>
-    </form>
+   <form onSubmit={sendEmail}>
+     <div>
+       <input type="text" name="name" />
+     </div>
+     <div>
+       <input type="submit" />
+     </div>
+   </form>
   );
 }
+
+
+// <form onSubmit={sendEmail}>
+// <div>
+//   <label>Nummeret på huset:</label>
+//   <input
+//     name="nr"
+//     type="text"
+//     placeholder={`Nr. ${formData.number}`}
+//   />
+// </div>
+// <div>
+//   <label>Dit navn og efternavn:</label>
+//   <input
+//     name="name"
+//     type="text"
+//     placeholder="Anders Andersen"
+//   />
+// </div>
+// <div>
+//   <label>Dit telefon nr.:</label>
+//   <input
+//     name="number"
+//     type="number"
+//     placeholder="+45 12 34 56 78"
+//   />
+// </div>
+// <div>
+//   <label>Din mailadresse:</label>
+//   <input
+//     name="email"
+//     type="email"
+//     placeholder="example@email.com"
+//   />
+// </div>
+// <div>
+//   <p>Pris:</p>
+// </div>
+// <div>
+//   {/* Fix coma toFixed() */}
+//   <p>{priceFixed}</p>
+// </div>
+// <input type="submit" className="btn" />
+// </form>
