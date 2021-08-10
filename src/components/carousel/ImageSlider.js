@@ -9,7 +9,7 @@ import { classes } from "istanbul-lib-coverage";
 
 
 
-export default function ImageSlider({ slides, setToggle }) {
+export default function ImageSlider({ slides, setToggle, setSliderToggle }) {
   const [current, setCurrent] = useState(0);
   const length = slides.length;
 
@@ -38,6 +38,7 @@ export default function ImageSlider({ slides, setToggle }) {
   }
 
   return (
+    <>
     <section className="slider">
       <FaArrowAltCircleLeft className="left_arrow" onClick={prevSlide} />
       <FaArrowAltCircleRight className="right_arrow" onClick={nextSlide} />
@@ -50,16 +51,19 @@ export default function ImageSlider({ slides, setToggle }) {
             {index === current && (
               <img src={slide.image} alt="Hytte" className="slider_image" />
             )}
-             <div
-            onClick={() => {
-              handleExit();
-              handleSlider(false);
-            }}
-            className="overlay"
-          ></div>
+      
           </div>
         );
       })}
+      
     </section>
+      <div
+      onClick={() => {
+        handleExit();
+        handleSlider(false);
+      }}
+      className="overlay"
+    ></div>
+    </>
   );
 }

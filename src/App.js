@@ -75,7 +75,7 @@ function App() {
       {/* Carousel 
             Remember Validation
         */}
-      {sliderToggle && <ImageSlider slides={SliderData} />}
+      {sliderToggle && <ImageSlider slides={SliderData} setSliderToggle={setSliderToggle} setToggle={setHandleToggle} />}
     </div>
   );
 }
