@@ -2,10 +2,8 @@
 // Youtube
 import React, { useState } from "react";
 import { SliderData } from "./SliderData";
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 import "./ImageSlider.css";
-import { classes } from "istanbul-lib-coverage";
 
 export default function ImageSlider({ slides, setToggle, setSliderToggle }) {
   const [current, setCurrent] = useState(0);

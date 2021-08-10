@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { fetch2api } from "../../helpers/helper";
-import classes from "./HytteModal.module.css";
 
 export default function HytteModal({
   hytteId,
@@ -31,7 +30,7 @@ export default function HytteModal({
   useEffect(() => {
     getHytte();
     console.log(hytteId);
-  }, [hytteId]);
+  }, []);
 
   function handleReservering(id) {
     setFormId(id);

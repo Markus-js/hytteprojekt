@@ -1,4 +1,3 @@
-import classes from "./Hytte.module.css";
 
 // handleClick = context
 export default function Hytte({ handleClick, data, setSliderToggle }) {

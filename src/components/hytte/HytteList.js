@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import Hytte from "./Hytte";
-import classes from "./Hytte.module.css"
 
 export default function HytteList({ handleClick, data, hytteListe, setSliderToggle }) {
   return (

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Form from "../form/Form";
-import classes from "./ReservationModal.module.css";
 import { fetch2api } from "../../helpers/helper";
 
 export default function ReservationModal({
@@ -10,7 +9,7 @@ export default function ReservationModal({
   setSliderToggle,
 }) {
   const [formData, setFormData] = useState("");
-  const priceFixed = parseInt(formData.price).toFixed(0);
+  //const priceFixed = parseInt(formData.price).toFixed(0);
 
   const getForm = async () => {
     const url = `https://api.mediehuset.net/hytteshop/${formId}`;
@@ -23,7 +22,7 @@ export default function ReservationModal({
   // Then triggers render of single component
   useEffect(() => {
     getForm();
-  }, [formId]);
+  }, []);
 
   function handleExit() {
     setForm(false);
