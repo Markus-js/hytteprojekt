@@ -1,5 +1,7 @@
 import React from "react";
-import emailjs from "emailjs-com";
+import emailjs from 'emailjs-com';
+import{ init } from 'emailjs-com';
+init("user_iKlFVYLk9kyYQV2fO6bD6");
 
 export default function Form({ formData }) {
   const priceFixed = parseInt(formData.price).toFixed(0);
