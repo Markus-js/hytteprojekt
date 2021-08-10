@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./global.scss";
+import Popup from "./components/popup/Popup";
 import HytteList from "./components/hytte/HytteList";
 import HytteModal from "./components/hytteModal/HytteModal";
 import ReservationModal from "./components/reservationModal/ReservationModal";
@@ -17,6 +18,8 @@ function App() {
   const [hytteId, setHytteId] = useState(null);
   const [formId, setFormId] = useState(null);
   const [sliderToggle, setSliderToggle] = useState(false);
+  const [handlePopup, setHandlePopup] = useState(true);
+
 
   const getHytteListe = async () => {
     const url = "https://api.mediehuset.net/hytteshop";
@@ -35,7 +38,7 @@ function App() {
   }
 
   return (
-    <div className={classes.container}>
+    <div className="container">
       {/* Validate if HytteList */}
       {/* // handleClick = context */}
 
@@ -76,6 +79,11 @@ function App() {
             Remember Validation
         */}
       {sliderToggle && <ImageSlider slides={SliderData} setSliderToggle={setSliderToggle} setToggle={setHandleToggle} />}
+   
+      {handlePopup && (
+          <Popup handlePopup={handlePopup} setPopup={setHandlePopup} />
+        )}
+   
     </div>
   );
 }

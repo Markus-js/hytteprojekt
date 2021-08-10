@@ -3,7 +3,12 @@ import Form from "../form/Form";
 import classes from "./ReservationModal.module.css";
 import { fetch2api } from "../../helpers/helper";
 
-export default function ReservationModal({ formId, handleForm, setForm, setSliderToggle }) {
+export default function ReservationModal({
+  formId,
+  handleForm,
+  setForm,
+  setSliderToggle,
+}) {
   const [formData, setFormData] = useState("");
   const priceFixed = parseInt(formData.price).toFixed(0);
 
@@ -35,7 +40,7 @@ export default function ReservationModal({ formId, handleForm, setForm, setSlide
             <div onClick={() => handleExit()} className="header">
               <h3>Du er nu ved at reservere et udhus/skur/byggeprojekt</h3>
             </div>
-            <div>
+            <div className="reservation-modal-content">
               <p>For at reservere et hus, skal du udfylde felterne herunder</p>
               <p>
                 Når du har udfyldt nedenstäende felter er huset reserveret til

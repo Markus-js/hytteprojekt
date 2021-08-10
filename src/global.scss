@@ -1,91 +1,511 @@
-* {
-    box-sizing: border-box;
-    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-body {
-    position: relative;
-    margin: 0;
-    
-}
-.modalContainer {
-    background: #fff;
-    position: absolute;
-    width: 1195px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 11;
-    .header {
-        background: red;
+$primary-color: #dd052b;
+$secondary-color: #8fbac0;
+$grey-text-color: #3c3c3b;
 
-        h3 {
-            margin: 0;
-            padding: 22px 56px; 
-            color: #fff;
-            font-size: 36px;
-        }
-    }
-    .contentContainer {
-        display: grid;
-        grid-template-columns: 3fr 2fr;
-        font-size: 25px;
-        padding: 20px 56px 56px 56px;
-        h3 {
-            margin-top: 0;
-            font-size: 35px;
-        }
-        p {
-            font-size: 25px;
-            font-weight: 300;
-        }
-        .price {
-            margin: 0;
-            margin-top: 20px;
-            font-size: 30px;
-            .amount {
-                font-weight: normal;
-            }
-        }
-        .image-box {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-    .true {
-        display: flex;
-    }
-    
-    .false {
-        display: none;
-    }
-    
-    
+* {
+  box-sizing: border-box;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+.body {
+  margin: 0;
+  padding: 100px 100px;
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    background:rgba(0,0,0,0.2);
-    backdrop-filter: blur(2px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+}
+// other modals z-index 10
+// slider modal z-index 12
+// layer so that they don´t conflict, when closing
+.carousel-overlay {
+  z-index: 11;
 }
 
 .btn {
-    background: #dd052b;
-    border-radius: 30px;
-    padding: 12px 58px;
-    max-width: 323px;
-    border: none;
-    text-transform: uppercase;
+  background: $primary-color;
+  border-radius: 30px;
+  padding: 12px 58px;
+  max-width: 323px;
+  border: none;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.close {
+  position: absolute;
+  left: -80px;
+  width: 30px;
+  height: 30px;
+  background: #87878780 0% 0% no-repeat padding-box;
+  border-radius: 50%;
+  cursor: pointer;
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+// Hytte CSS
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    gap: 35px;
+  p {
     font-size: 25px;
+    font-weight: bold;
+    color: $grey-text-color;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    margin-bottom: 30px;
+    p {
+      padding: 10px 0 0 0;
+    }
+    .flexWrap {
+      display: flex;
+      justify-content: space-between;
+    }
+    .btnContainer {
+      display: flex;
+      flex-direction: column-reverse;
+      margin-left: 20px ;
+      .btn-small {
+        font-size: 18px;
+        padding: 7px;
+        width: 148px;
+      }
+    }
+    .imageContainer {
+      width: 100%;
+      height: 350px;
+      max-height: 350px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    /* local css */
+    p {
+      margin: 0;
+    }
+  }
+}
+
+// Global CSS for both modals. modalContainer, header
+.modalContainer {
+  background: #fff;
+  position: absolute;
+  //!!!!
+  width: 70%;
+  // TOP 50% !! FIX MODAL so that it fill 100% of body
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  .header {
+    background: $primary-color;
+    h3 {
+      margin: 0;
+      padding: 22px 56px;
+      color: #fff;
+      font-size: 36px;
+    }
+  }
+  .true {
+    display: flex;
+  }
+
+  .false {
+    display: none;
+  }
+
+  // CSS FOR reservation-modal-content
+  .reservation-modal-content {
+    padding: 20px 56px 15px 56px;
+    p {
+      font-size: 14px;
+      font-weight: 300;
+    }
+    p:last-child {
+      font-weight: bold;
+    }
+    ::placeholder {
+      font-weight: bold;
+    }
+    label {
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      line-height: 50px;
+    }
+    input {
+      width: 60%;
+      font-size: 24px;
+      padding: 7px;
+      margin-right: 100px;
+      border: 1px solid black;
+      align-self: flex-end;
+    }
+    input[type="submit"] {
+      border: none;
+      max-width: 254px;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .spacer {
+      width: 50px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+  }
+
+  // CSS FOR hytte-modal-content
+  .hytte-modal-content {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    font-size: 18px;
+    padding: 20px 56px 56px 56px;
+    h3 {
+      margin-top: 0;
+      font-size: 35px;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 300;
+    }
+    .price {
+      margin: 0;
+      margin-top: 20px;
+      font-size: 30px;
+      .amount {
+        font-weight: normal;
+      }
+    }
+    .image-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  // Popup CSS
+  .--blue {
+    background: $secondary-color;
+    height: 45px;
+    line-height: 45px;
+    h3 {
+      font-size: 27px;
+      padding: 0 53px 0;
+    }
+  }
+  .popup-modal-content {
+    padding: 20px 56px 56px 56px;
+    p {
+      font-size: 18px;
+    }
+    p:last-child {
+      font-size: 14px;
+      color: $grey-text-color;
+    }
+    a {
+      color: $grey-text-color;
+      font-weight: bold;
+    }
+    .popup-btn {
+      margin-top: 100px;
+      margin-bottom: 50px;
+      color: $grey-text-color;
+      border-radius: 15px;
+      border: none;
+      background: $secondary-color;
+      font-size: 38px;
+      font-weight: bold;
+      padding: 15px 50px;
+      float: right;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 1530px) {
+  // Global CSS for both modals. modalContainer, header
+  .modalContainer {
+    .header {
+      background: $primary-color;
+      h3 {
+        margin: 0;
+        padding: 22px 56px;
+        color: #fff;
+        ///!!!
+        font-size: 30px;
+      }
+    }
+
+    // CSS FOR reservation-modal-content
+    .reservation-modal-content {
+      padding: 20px 56px 15px 56px;
+      p {
+        //!!!
+        font-size: 18px;
+      }
+      label {
+        font-size: 18px;
+        display: flex;
+        //!!!!
+        flex-direction: column;
+        //!!!
+        margin-top: 5px;
+      }
+      input {
+        //!!!
+        width: 100%;
+        font-size: 20px;
+        //!!!
+        margin-right: 0;
+      }
+      .spacer {
+        display: none;
+      }
+    }
+
+    // CSS FOR hytte-modal-content
+    .hytte-modal-content {
+      grid-template-columns: 1fr;
+      font-size: 20px;
+      p {
+        font-size: 20px;
+      }
+      h3 {
+        font-size: 24px;
+      }
+      .price {
+        font-size: 24px;
+      }
+      .image-box {
+        display: flex;
+        margin: 0 auto;
+        width: 300px;
+        height: auto;
+      }
+    }
+
+    // Popup CSS
+    .--blue {
+      background: $secondary-color;
+      height: 45px;
+      line-height: 45px;
+      h3 {
+        font-size: 27px;
+        padding: 0 53px 0;
+      }
+    }
+    .popup-modal-content {
+      padding: 20px 56px 56px 56px;
+      p {
+        font-size: 18px;
+      }
+      p:last-child {
+        font-size: 14px;
+        color: $grey-text-color;
+      }
+      a {
+        color: $grey-text-color;
+        font-weight: bold;
+      }
+      .popup-btn {
+        margin-top: 100px;
+        margin-bottom: 50px;
+        color: $grey-text-color;
+        border-radius: 15px;
+        border: none;
+        background: $secondary-color;
+        font-size: 38px;
+        font-weight: bold;
+        padding: 15px 50px;
+        float: right;
+        cursor: pointer;
+      }
+    }
+  }
+
+  @media (max-width: 950px) {
+    .body {
+      margin: 0;
+      // media, page-title
+      padding: 50px 50px;
+    }
+
+    // Global CSS for both modals. modalContainer, header
+    .modalContainer {
+      .header {
+        background: $primary-color;
+        h3 {
+          margin: 0;
+          padding: 22px 56px;
+          color: #fff;
+          ///!!!
+          font-size: 25px;
+        }
+      }
+
+      // CSS FOR reservation-modal-content
+      .reservation-modal-content {
+        padding: 20px 56px 15px 56px;
+        p {
+          font-size: 16px;
+        }
+        form {
+          label {
+            margin: 0px;
+          }
+          label,
+          input {
+            font-size: 16px;
+          }
+          input[type="submit"] {
+            align-self: center;
+          }
+        }
+      }
+
+      // CSS FOR hytte-modal-content
+      .hytte-modal-content {
+        grid-template-columns: 1fr;
+        font-size: 16px;
+        p {
+          font-size: 16px;
+        }
+        h3 {
+          font-size: 20px;
+        }
+        .price {
+          font-size: 20px;
+        }
+      }
+
+      // Popup CSS
+      .--blue {
+        background: $secondary-color;
+        h3 {
+          font-size: 20px;
+          padding: 0 53px 0;
+        }
+      }
+      .popup-modal-content {
+        padding: 20px 56px 56px 56px;
+        .popup-btn {
+          display: flex;
+          margin: 0 auto;
+          margin-top: 70px;
+          margin-bottom: 20px;
+          font-size: 24px;
+          float: none;
+        }
+      }
+    }
+
+    @media (max-width: 950px) {
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .imageContainer {
+          width: 100%;
+          height: 350px;
+          max-height: 350px;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+        }
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+      .modalContainer {
+        width: 90%;
+        .header {
+          h3 {
+            padding: 22px 40px;
+            font-size: 18px;
+          }
+        }
+      }
+
+      .card {
+        align-items: center;
+        width: 100%;
+        p {
+          padding: 5px 0 5px 0;
+        }
+      }
+      .flexWrap {
+        display: block !important;
+      }
+
+      .popup-modal-content,
+      .hytte-modal-content,
+      .reservation-modal-content {
+        padding: 10px 40px 15px 40px !important;
+      }
+      .close {
+        position: absolute;
+        bottom: 93%;
+        left: 88%;
+        background: transparent;
+        z-index: 20;
+        span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #fff;
+          font-size: 20px;
+          font-weight: bold;
+        }
+      }
+
+      // Popup CSS
+      .--blue {
+        background: $secondary-color;
+        h3 {
+          font-size: 20px;
+          padding: 0 !important;
+          padding-left: 20px !important;
+        }
+      }
+    }
+  }
 }

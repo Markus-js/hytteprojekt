@@ -10,23 +10,23 @@ export default function Hytte({ handleClick, data, setSliderToggle }) {
   }
 
   return (
-    <div key={data.id} className={classes.card}>
+    <div key={data.id} className="card">
       <div
-        className={classes.imageContainer}
+        className="imageContainer"
         onClick={() => handleSlider(true)}
         style={{
           backgroundImage: `url(${data.image})`,
         }}
       ></div>
-      <div className={classes.flexWrap}>
+      <div className="flexWrap">
         <div>
           <p>Hus nr. {data.number}</p>
           <br />
           <p>Pris: {priceFixed}kr.</p>
         </div>
-        <div className={classes.btnContainer}>
+        <div className="btnContainer">
           <button
-            className="btn"
+            className="btn btn-small"
             onClick={() => {
               handleClick(data.id);
               handleSlider(false);

@@ -4,7 +4,7 @@ import classes from "./Hytte.module.css"
 
 export default function HytteList({ handleClick, data, hytteListe, setSliderToggle }) {
   return (
-    <div className={classes.container}>
+    <div className="container">
       {hytteListe.map((data) => {
         // handleClick = context
         // setSliderToggle = context

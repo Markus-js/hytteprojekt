@@ -63,7 +63,7 @@ export default function HytteModal({
             <div onClick={() => handleExit()} className="header">
               <h3>Du kigger nu på hus nr. {hytte.number}</h3>
             </div>
-            <div className="contentContainer">
+            <div className="hytte-modal-content">
               <div>
                 <h3>Hus nr. {hytte.number}</h3>
 
