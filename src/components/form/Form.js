@@ -11,7 +11,7 @@ export default function Form({ formData }) {
 
     emailjs
       .sendForm(
-        "gmail",
+        "service_58zi6jz",
         "template_b9c11vh",
         e.target,
         "user_iKlFVYLk9kyYQV2fO6bD6"
