@@ -39,7 +39,6 @@ export default function HytteModal({
   }
 
   function handleExit() {
-
     // App.js Parrent
     // Toggle modal should be should be shown
     setToggle(false);
@@ -59,8 +58,16 @@ export default function HytteModal({
       {handleToggle && (
         <div className={handleToggle ? true : false}>
           <div className="modalContainer">
+            <div className="close" onClick={() => handleExit()}>
+              <span>&#10005;</span>
+            </div>
             <div onClick={() => handleExit()} className="header">
-              <h3>Du kigger nu på hus nr. {hytte.number}</h3>
+              <div>
+                <h3>Du kigger nu på hus nr. {hytte.number}</h3>
+              </div>
+              <div className="close--small" onClick={() => handleExit()}>
+                <span>&#10005;</span>
+              </div>
             </div>
             <div className="hytte-modal-content">
               <div>

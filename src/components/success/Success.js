@@ -1,17 +1,26 @@
-
-
-export default function Popup({ handlePopup, setPopup }) {
+export default function Success({ setSuccesToggle, setSliderToggle }) {
   function handleExit() {
-    setPopup(false);
+    setSuccesToggle(false);
+  }
+  function handleSlider(boolean) {
+    setSliderToggle(boolean);
   }
 
   return (
     <div>
-      {handlePopup && (
-        <div className={handlePopup ? true : false}>
+      {setSuccesToggle && (
+        <div className={setSuccesToggle ? true : false}>
           <div className="modalContainer">
-            <div className="header --blue">
-              <h3>Læs dette, inden du bestiller</h3>
+            <div className="close" onClick={() => handleExit()}>
+              <span>&#10005;</span>
+            </div>
+            <div className="header --green" style={{ background: "#00C851" }}>
+              <div>
+                <h3>SECCES</h3>
+              </div>
+              <div className="close--small" onClick={() => handleExit()}>
+                <span>&#10005;</span>
+              </div>
             </div>
             <main className="popup-modal-content">
               <p>
@@ -38,16 +47,24 @@ export default function Popup({ handlePopup, setPopup }) {
                 &nbsp; Der er numre på husene, og vi opfordrer til, at du kører
                 forbi og ser, hvilket nummer du gerne vil have.
               </p>
-              <button className="popup-btn" onClick={() => handleExit()}>
-                FORSÆT
+              <button
+                className="popup-btn"
+                style={{ background: "#00C851", color: "#fff" }}
+                onClick={() => handleExit()}
+              >
+                FORSTÅET
               </button>
             </main>
           </div>
         </div>
       )}
-        <div
-    className="overlay"
-  ></div>
+      <div
+        onClick={() => {
+          handleExit();
+          handleSlider(false);
+        }}
+        className="overlay"
+      ></div>
     </div>
   );
 }

@@ -7,6 +7,7 @@ export default function ReservationModal({
   handleForm,
   setForm,
   setSliderToggle,
+  handleSuccess,
 }) {
   const [formData, setFormData] = useState("");
   //const priceFixed = parseInt(formData.price).toFixed(0);
@@ -36,8 +37,16 @@ export default function ReservationModal({
       {handleForm && (
         <div className={handleForm ? true : false}>
           <div className="modalContainer">
+            <div className="close" onClick={() => handleExit()}>
+              <span>&#10005;</span>
+            </div>
             <div onClick={() => handleExit()} className="header">
-              <h3>Du er nu ved at reservere et udhus/skur/byggeprojekt</h3>
+              <div>
+                <h3>Du er nu ved at reservere et udhus/skur/byggeprojekt</h3>
+              </div>
+              <div className="close--small" onClick={() => handleExit()}>
+                <span>&#10005;</span>
+              </div>
             </div>
             <div className="reservation-modal-content">
               <p>For at reservere et hus, skal du udfylde felterne herunder</p>
@@ -47,7 +56,11 @@ export default function ReservationModal({
                 ellers sattes huset til salg igen.
               </p>
               {/* Refracture Form to own component */}
-              <Form formData={formData} />
+              <Form
+                formData={formData}
+                handleSuccess={handleSuccess}
+                setForm={setForm}
+              />
               <p>
                 Du kan betale via MobilePay nummer 179833. När vi har modtaget
                 din betaling sender vi en mail med bekræeftelse og beder dig om

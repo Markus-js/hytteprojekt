@@ -1,6 +1,7 @@
 $primary-color: #dd052b;
 $secondary-color: #8fbac0;
 $grey-text-color: #3c3c3b;
+$success-color: #00C851;
 
 * {
   box-sizing: border-box;
@@ -124,6 +125,11 @@ $grey-text-color: #3c3c3b;
   transform: translate(-50%, -50%);
   z-index: 10;
   .header {
+    .close--small {
+      display: none;
+      cursor: pointer;
+      z-index: 14;
+    }
     background: $primary-color;
     h3 {
       margin: 0;
@@ -230,6 +236,15 @@ $grey-text-color: #3c3c3b;
       padding: 0 53px 0;
     }
   }
+  .--green {
+    background: $success-color;
+    height: 45px;
+    line-height: 45px;
+    h3 {
+      font-size: 27px;
+      padding: 0 53px 0;
+    }
+  }
   .popup-modal-content {
     padding: 20px 56px 56px 56px;
     p {
@@ -250,7 +265,7 @@ $grey-text-color: #3c3c3b;
       border-radius: 15px;
       border: none;
       background: $secondary-color;
-      font-size: 38px;
+      font-size: 30px;
       font-weight: bold;
       padding: 15px 50px;
       float: right;
@@ -331,6 +346,15 @@ $grey-text-color: #3c3c3b;
         padding: 0 53px 0;
       }
     }
+    .--green {
+      background: $secondary-color;
+      height: 45px;
+      line-height: 45px;
+      h3 {
+        font-size: 27px;
+        padding: 0 53px 0;
+      }
+    }
     .popup-modal-content {
       padding: 20px 56px 56px 56px;
       p {
@@ -351,7 +375,7 @@ $grey-text-color: #3c3c3b;
         border-radius: 15px;
         border: none;
         background: $secondary-color;
-        font-size: 38px;
+        font-size: 30px;
         font-weight: bold;
         padding: 15px 50px;
         float: right;
@@ -423,6 +447,13 @@ $grey-text-color: #3c3c3b;
           padding: 0 53px 0;
         }
       }
+      .--green {
+        background: $success-color;
+        h3 {
+          font-size: 20px;
+          padding: 0 53px 0;
+        }
+      }
       .popup-modal-content {
         padding: 20px 56px 56px 56px;
         .popup-btn {
@@ -430,7 +461,7 @@ $grey-text-color: #3c3c3b;
           margin: 0 auto;
           margin-top: 70px;
           margin-bottom: 20px;
-          font-size: 24px;
+          font-size: 20px;
           float: none;
         }
       }
@@ -457,7 +488,22 @@ $grey-text-color: #3c3c3b;
       .modalContainer {
         width: 90%;
         .header {
+          position: relative;
+          .close--small {
+            display: block;
+            position: absolute;
+            left: 95%;
+            top: 50%;
+            font-size: 20px;
+            transform: translate(-50%, -50%);
+          }
+          display: flex;
+          justify-content: space-between;
+          padding-right:  22px;
+          color: #fff;
           h3 {
+            display: flex;
+            justify-content: space-between;
             padding: 22px 40px;
             font-size: 18px;
           }
@@ -481,6 +527,7 @@ $grey-text-color: #3c3c3b;
         padding: 10px 40px 15px 40px !important;
       }
       .close {
+        display: none;
         position: absolute;
         bottom: 93%;
         left: 88%;
@@ -500,6 +547,14 @@ $grey-text-color: #3c3c3b;
       // Popup CSS
       .--blue {
         background: $secondary-color;
+        h3 {
+          font-size: 20px;
+          padding: 0 !important;
+          padding-left: 20px !important;
+        }
+      }
+      .--green {
+        background: $success-color;
         h3 {
           font-size: 20px;
           padding: 0 !important;
