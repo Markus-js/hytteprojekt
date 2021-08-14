@@ -1,6 +1,7 @@
-export async function fetch2api(url, method = 'GET') {
+export async function fetch2api(url, method = 'GET', encoded) {
     let option = {
         method: method,
+        body: encoded
     }
 
     try {

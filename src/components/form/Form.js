@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import { init } from "emailjs-com";
+import { fetch2api } from "../../helpers/helper";
 init("user_iKlFVYLk9kyYQV2fO6bD6");
 
 export default function Form({ formData, handleSuccess, setForm }) {
+  const [data, setData] = useState({ name: "", email: "", tlf: "" });
   const priceFixed = parseInt(formData.price).toFixed(0);
 
-  
+  const postReservation = async () => {
+    let urlencoded = new URLSearchParams();
+    urlencoded.append("item_id", formData.number);
+    urlencoded.append("name", data.name);
+    urlencoded.append("email", data.email);
+    urlencoded.append("phone", data.tlf);
+    const url = "https://api.mediehuset.net/hytteshop/reservation";
+    const result = await fetch2api(url, "POST", urlencoded);
+    console.log(result);
+  };
 
   function sendEmail(e) {
     e.preventDefault();
@@ -21,9 +32,11 @@ export default function Form({ formData, handleSuccess, setForm }) {
       .then(
         (result) => {
           console.log(result.text);
+
           // If result .then close current component, and show success component
-          setForm(false)
-          handleSuccess(true)
+          setForm(false);
+          handleSuccess(true);
+          postReservation();
         },
         (error) => {
           console.log(error.text);
@@ -32,23 +45,42 @@ export default function Form({ formData, handleSuccess, setForm }) {
     e.target.reset();
   }
 
+  console.log(data);
+
   return (
     <form onSubmit={sendEmail}>
       <div>
-        <label>Nummeret på huset: {formData.number}</label>
-        <input hidden name="hus_nr" type="text" value={formData.number} />
+        <h3>Nummeret på huset: {formData.number}</h3>
       </div>
       <div>
         <label>Dit navn og efternavn:</label>
-        <input name="name" type="text" placeholder="Anders Andersen" required/>
+        <input
+          name="name"
+          type="text"
+          placeholder="Anders Andersen"
+          onChange={(e) => setData({ ...data, name: e.target.value })}
+          required
+        />
       </div>
       <div>
         <label>Dit telefon nr.:</label>
-        <input name="tlf" type="number" placeholder="+45 12 34 56 78" required/>
+        <input
+          name="tlf"
+          type="number"
+          placeholder="+45 12 34 56 78"
+          onChange={(e) => setData({ ...data, tlf: e.target.value })}
+          required
+        />
       </div>
       <div>
         <label>Din mailadresse:</label>
-        <input name="user_email" type="email" placeholder="example@email.com" required/>
+        <input
+          name="user_email"
+          type="email"
+          placeholder="example@email.com"
+          onChange={(e) => setData({ ...data, email: e.target.value })}
+          required
+        />
       </div>
       <div>
         <p>Pris:</p>

@@ -35,7 +35,7 @@ export default function ReservationModal({
   return (
     <div>
       {handleForm && (
-        <div className={handleForm ? true : false}>
+        <div>
           <div className="modalContainer">
             <div className="close" onClick={() => handleExit()}>
               <span>&#10005;</span>

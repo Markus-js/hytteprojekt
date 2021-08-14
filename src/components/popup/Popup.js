@@ -8,7 +8,7 @@ export default function Popup({ handlePopup, setPopup }) {
   return (
     <div>
       {handlePopup && (
-        <div className={handlePopup ? true : false}>
+        <div>
           <div className="modalContainer">
             <div className="header --blue">
               <h3>Læs dette, inden du bestiller</h3>

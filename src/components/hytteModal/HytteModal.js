@@ -56,7 +56,7 @@ export default function HytteModal({
         Also handleToggle sets css classes true=display:flex, false=display:none
       */}
       {handleToggle && (
-        <div className={handleToggle ? true : false}>
+        <div>
           <div className="modalContainer">
             <div className="close" onClick={() => handleExit()}>
               <span>&#10005;</span>

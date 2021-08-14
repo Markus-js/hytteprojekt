@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 
 import "./global.scss";
 import Popup from "./components/popup/Popup";
@@ -23,26 +22,9 @@ function App() {
   const [successToggle, setSuccesToggle] = useState(null);
   const [handlePopup, setHandlePopup] = useState(true);
    
-  const updataData = () => {
+  
 
-    const data = {
-      "id": "4",
-      "type": "Hytte",
-      "number": "45",
-      "title": "Træhytte - isoleret",
-      "price": "6500.00",
-      "image": "https://api.mediehuset.net/images/hytteshop/hytte1.jpg",
-      "num_reservations": "0"
-  }
-
-    axios.post("https://api.mediehuset.net/hytteshop", data)
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.log(err)
-  })
-  }
+ 
 
   const getHytteListe = async () => {
     const url = "https://api.mediehuset.net/hytteshop";
@@ -51,7 +33,6 @@ function App() {
   };
 
   useEffect(() => {
-    updataData();
     getHytteListe();
   }, []);
 
