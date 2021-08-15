@@ -9,7 +9,7 @@ import ImageSlider from "./components/carousel/ImageSlider";
 import Succes from "./components/success/Success";
 // Get data from current
 import { SliderData } from "./components/carousel/SliderData";
-
+// API Helper
 import { fetch2api } from "./helpers/helper";
 
 function App() {
@@ -21,22 +21,19 @@ function App() {
   const [sliderToggle, setSliderToggle] = useState(false);
   const [successToggle, setSuccesToggle] = useState(null);
   const [handlePopup, setHandlePopup] = useState(true);
-   
-  
 
- 
-
+  // Fetch API
   const getHytteListe = async () => {
     const url = "https://api.mediehuset.net/hytteshop";
     const result = await fetch2api(url);
     setHytteListe(result?.items);
   };
-
+  // Lifecycle management
   useEffect(() => {
     getHytteListe();
   }, []);
 
-  // handleClick = context
+  // handleClick
   function handleClick(id) {
     setHytteId(id);
     setHandleToggle(true);
@@ -44,9 +41,6 @@ function App() {
 
   return (
     <div className="container">
-      {/* Validate if HytteList */}
-      {/* // handleClick = context */}
-
       {hytteListe && (
         <HytteList
           handleClick={handleClick}
@@ -57,7 +51,6 @@ function App() {
       )}
 
       {/* Modal */}
-
       {hytteId && (
         <HytteModal
           hytteId={hytteId}
@@ -70,7 +63,6 @@ function App() {
       )}
 
       {/* Form */}
-
       {formId && (
         <ReservationModal
           formId={formId}
@@ -82,21 +74,58 @@ function App() {
       )}
 
       {/* Carousel 
-            Remember Validation
-        */}
-      {sliderToggle && <ImageSlider slides={SliderData} setSliderToggle={setSliderToggle} setToggle={setHandleToggle} />}
-   
+            !!!FIX API!!!
+            SliderData = dummy data fra et object.
+
+            Eksempel på structured API:
+
+            "status": true,
+            "error": "",
+            "count": 3,
+            "items": [
+            {
+            "id": "1",
+            "type": "Hytte",
+            "number": "45",
+            "title": "Træhytte - isoleret",
+            "price": "6500.00",
+            "image": "https://api.mediehuset.net/images/hytteshop/hytte1.jpg",
+            "num_reservations": "1",
+   ====>    "carousel": [     <====      
+              {
+                "carousel_imageOne": "hytte1.jpg"
+              },
+              {
+                "carousel_imageTwo": "hytte2.jpg"
+              },
+              {
+                "carousel_imageThree": "hytte3.jpg"
+              }
+            ]
+          }
+        ] 
+      */}
+      {sliderToggle && (
+        <ImageSlider
+          slides={SliderData}
+          setSliderToggle={setSliderToggle}
+          setToggle={setHandleToggle}
+        />
+      )}
+
       {handlePopup && (
-          <Popup handlePopup={handlePopup} setPopup={setHandlePopup} />
-        )}
-         {/* 
+        <Popup handlePopup={handlePopup} setPopup={setHandlePopup} />
+      )}
+      {/* 
          Succes component
           Show if sendForm was successful  
         */}
-        {successToggle && (
-          <Succes setSuccesToggle={setSuccesToggle} setSliderToggle={setSliderToggle} />
-        )}
-   
+      {successToggle && (
+        <Succes
+          setSuccesToggle={setSuccesToggle}
+          setSliderToggle={setSliderToggle}
+        />
+      )}
     </div>
   );
 }

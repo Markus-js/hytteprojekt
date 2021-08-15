@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
-import { init } from "emailjs-com";
 import { fetch2api } from "../../helpers/helper";
-init("user_iKlFVYLk9kyYQV2fO6bD6");
+// import emailjs from "emailjs-com";
+// import { init } from "emailjs-com";
+// init("user_iKlFVYLk9kyYQV2fO6bD6");
+
+
 
 export default function Form({ formData, handleSuccess, setForm }) {
   const [data, setData] = useState({ name: "", email: "", tlf: "" });
   const priceFixed = parseInt(formData.price).toFixed(0);
 
+  // POST API 
   const postReservation = async () => {
     let urlencoded = new URLSearchParams();
     urlencoded.append("item_id", formData.number);
@@ -19,36 +22,37 @@ export default function Form({ formData, handleSuccess, setForm }) {
     console.log(result);
   };
 
-  function sendEmail(e) {
-    e.preventDefault();
+  // function sendEmail(e) {
+  //   e.preventDefault();
 
-    emailjs
-      .sendForm(
-        "service_58zi6jz",
-        "template_b9c11vh",
-        e.target,
-        "user_iKlFVYLk9kyYQV2fO6bD6"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
+  //   emailjs
+  //     .sendForm(
+  //       "service_58zi6jz",
+  //       "template_b9c11vh",
+  //       e.target,
+  //       "user_iKlFVYLk9kyYQV2fO6bD6"
+  //     )
+  //     .then(
+  //       (result) => {
+  //         console.log(result.text);
 
-          // If result .then close current component, and show success component
-          setForm(false);
-          handleSuccess(true);
-          postReservation();
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-    e.target.reset();
-  }
+  //         // If result .then close current component, and show success component
+  //         setForm(false);
+  // ===>    handleSuccess(true);   <=== // If DATA WAS SEND Successful = Then show Success <Popup /> App.js
+  //         postReservation();     
+  //       },
+  //       (error) => {
+  //         console.log(error.text);
+  //       }
+  //     );
+  //   e.target.reset();
+  // }
 
   console.log(data);
 
   return (
-    <form onSubmit={sendEmail}>
+                  //{sendEmail}
+    <form onSubmit={""}>
       <div>
         <h3>Nummeret på huset: {formData.number}</h3>
       </div>
