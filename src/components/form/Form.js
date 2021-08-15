@@ -54,7 +54,7 @@ export default function Form({ formData, handleSuccess, setForm }) {
                   //{sendEmail}
     <form onSubmit={""}>
       <div>
-        <h3>Nummeret på huset: {formData.number}</h3>
+        <h3 style={{margin: 0}}>Nummeret på huset: {formData.number}</h3>
       </div>
       <div>
         <label>Dit navn og efternavn:</label>
@@ -87,11 +87,7 @@ export default function Form({ formData, handleSuccess, setForm }) {
         />
       </div>
       <div>
-        <p>Pris:</p>
-      </div>
-      <div>
-        {/* Fix coma toFixed() */}
-        <p>{priceFixed}</p>
+        <p>Pris: {priceFixed}kr.</p>
       </div>
       <input type="submit" className="btn" />
     </form>
